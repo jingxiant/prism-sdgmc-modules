@@ -34,3 +34,5 @@ process RUN_SLIVAR_TRIO_ANALYSIS_TIER2{
         cat <<-END_VERSIONS > versions.yml
                 ${task.process}\tbcftools:\$(bcftools --version 2>&1 | sed -n '1p' | sed 's/bcftools //g; s/ .*//'); slivar:\$(slivar 2>&1 | sed -n '1p' |sed 's/^> slivar version: //g; s/ .*//g')
         END_VERSIONS
+        """
+}
