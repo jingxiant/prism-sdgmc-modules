@@ -44,7 +44,7 @@ workflow EXOMEDEPTH_POSTPROCESS {
     postprocess_result = EXOMEDEPTH_POSTPROCESS_FAMILY.out
   }
 
-  exomedepth_ch.join(ch_vcf_filtered_tsv).view()
+  exomedepth_ch.count.view()
 
   EXOMEDEPTH_FILTER_FOR_GSEAPY(exomedepth_ch, exomedepth_annotate_counts_script, exomedepth_deletion_db, exomedepth_duplication_db)
 
@@ -53,5 +53,4 @@ workflow EXOMEDEPTH_POSTPROCESS {
   postprocess_result
   exomedepth_del_tsv_forgseapy      = EXOMEDEPTH_FILTER_FOR_GSEAPY.out[0]
   exomedepth_dup_tsv_forgseapy      = EXOMEDEPTH_FILTER_FOR_GSEAPY.out[1]
-  exomedepth_ch
 }
