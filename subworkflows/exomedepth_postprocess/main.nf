@@ -29,8 +29,6 @@ workflow EXOMEDEPTH_POSTPROCESS {
     .map {file -> [file.simpleName, file]}
     .set { exomedepth_ch }
 
-  exomedepth_ch.view()
-
   if(params.genotyping_mode == 'single'){
     EXOMEDEPTH_POSTPROCESS_SINGLE(exomedepth_ch.join(ch_vcf_filtered_tsv), process_script_single, panel, clingen, mutation_spectrum, decipher)
     postprocess_result = EXOMEDEPTH_POSTPROCESS_SINGLE.out
@@ -55,4 +53,5 @@ workflow EXOMEDEPTH_POSTPROCESS {
   postprocess_result
   exomedepth_del_tsv_forgseapy      = EXOMEDEPTH_FILTER_FOR_GSEAPY.out[0]
   exomedepth_dup_tsv_forgseapy      = EXOMEDEPTH_FILTER_FOR_GSEAPY.out[1]
+  exomedepth_ch
 }
