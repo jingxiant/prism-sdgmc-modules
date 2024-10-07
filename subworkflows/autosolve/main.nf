@@ -1,7 +1,7 @@
-include { AUTOSOLVE_TIER1_TIER2_MULTISAMPLE } from "../../modules/autosolve_multisample/main.nf"
+include { AUTOSOLVE_TIER1_TIER2_MULTISAMPLE } from "../../modules/autosolve_multisample"
 include { AUTOSOLVE_TIER1_TIER2_TRIO } from "../../modules/autosolve_family"
 
-workfloe AUTOSOLVE {
+workflow AUTOSOLVE {
 
   take:
   ch_vep_tsv_filtered
