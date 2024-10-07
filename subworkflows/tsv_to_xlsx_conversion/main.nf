@@ -24,7 +24,6 @@ workflow TSV_TO_XLSX {
     excel_file = TSV_TO_XLSX_TRIO.out
     ch_versions = ch_versions.mix(TSV_TO_XLSX_TRIO.out.versions)
   }
-  ch_versions = ch_versions.mix(ALIGN_READS.out.versions)
 
   emit:
   excel_file
