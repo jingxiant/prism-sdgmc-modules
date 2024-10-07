@@ -14,15 +14,14 @@ workflow SLIVAR_ANALYSIS {
   vep_cache_files
   vep_plugin_files
   
-
-  
   main:
   ch_versions = Channel.empty()
 
   RUN_SLIVAR_TRIO_ANALYSIS(ch_decom_norm_vcf, ref_genome, ref_genome_index, gff3_file, pedfile, slivar_gnomadpath, slivar_jspath)
-  ch_versions = ch_versions.mix(SLIVAR_ANALYSIS.out.versions)
+  ch_versions = ch_versions.mix(RUN_SLIVAR_TRIO_ANALYSIS.out.versions)
 
   ANNOTATE_VEP_SLIVAR(RUN_SLIVAR_TRIO_ANALYSIS.out[0].flatten(), vep_cache_files, vep_plugin_files)
+  ch_versions = ch_versions.mix(ANNOTATE_VEP_SLIVAR.out.versions)
 
   emit:
   slivar_trio_analysis_output_raw_vcf    = RUN_SLIVAR_TRIO_ANALYSIS.out[0]
