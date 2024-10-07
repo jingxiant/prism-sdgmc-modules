@@ -28,7 +28,7 @@ workflow SOMALIER {
     ch_versions = ch_versions.mix(SOMALIER_RELATE.out.versions)
   }
 
-  if(genotyping_mode == 'single' || enotyping_mode == 'joint'){
+  if(genotyping_mode == 'single' || genotyping_mode == 'joint'){
     somalier_ancestry_output = Channel.empty()
     somalier_relate_output = Channel.empty()
   }
