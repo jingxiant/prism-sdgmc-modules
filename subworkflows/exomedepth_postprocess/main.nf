@@ -40,11 +40,9 @@ workflow EXOMEDEPTH_POSTPROCESS {
   }
 
   if(params.genotyping_mode == 'family'){
-    EXOMEDEPTH_POSTPROCESS_FAMILY(exomedepth_ch.join(ch_vcf_filtered_tsv), process_script_family, panel, clingen, mutation_spectrum, decipher, pedfile)
+    EXOMEDEPTH_POSTPROCESS_FAMILY(exomedepth_ch.join(ch_vcf_filtered_tsv, by: [0, 0]), process_script_family, panel, clingen, mutation_spectrum, decipher, pedfile)
     postprocess_result = EXOMEDEPTH_POSTPROCESS_FAMILY.out
   }
-
-  exomedepth_ch.count.view()
 
   EXOMEDEPTH_FILTER_FOR_GSEAPY(exomedepth_ch, exomedepth_annotate_counts_script, exomedepth_deletion_db, exomedepth_duplication_db)
 
