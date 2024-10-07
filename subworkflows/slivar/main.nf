@@ -3,7 +3,7 @@ include { ANNOTATE_VEP_SLIVAR } from "../../modules/vep_annotate_slivar/main.nf"
 include { VEP_VCF_TO_TSV_SLIVAR } from "../../modules/vcf_to_tsv_slivar/main.nf"
 include { RUN_SLIVAR_TRIO_ANALYSIS_TIER2 } from "../../modules/slivar/trio_analysis_tier2/main.nf"
 include { ANNOTATE_VEP_SLIVAR as ANNOTATE_VEP_SLIVAR_TIER2 } from "../../modules/vep_annotate_slivar/main.nf"
-include { VEP_VCF_TO_TSV_SLIVAR as VEP_VCF_TO_TSV_SLIVAR_TIER2 } from "../../modules/vcf_to_tsv_slivar/main.nf"
+include { VEP_VCF_TO_TSV_SLIVAR_TIER2 } from "../../modules/vcf_to_tsv_slivar_tier2/main.nf"
 
 workflow SLIVAR_ANALYSIS {
 
