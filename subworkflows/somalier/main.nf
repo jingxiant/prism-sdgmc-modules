@@ -17,7 +17,7 @@ workflow SOMALIER {
   main:
   ch_versions = Channel.empty()
 
-  if(genotyping_mode == "family"){
+  if(params.genotyping_mode == "family"){
     SOMALIER_EXTRACT(ch_apply_bqsr_bam, ref_genome, ref_genome_index, somalier_sites, proband_id)
     ch_versions = ch_versions.mix(SOMALIER_EXTRACT.out.versions)
 
@@ -28,7 +28,7 @@ workflow SOMALIER {
     ch_versions = ch_versions.mix(SOMALIER_RELATE.out.versions)
   }
 
-  if(genotyping_mode == 'single' || genotyping_mode == 'joint'){
+  if(params.genotyping_mode == 'single' || params.genotyping_mode == 'joint'){
     somalier_ancestry_output = Channel.empty()
     somalier_relate_output = Channel.empty()
   }
