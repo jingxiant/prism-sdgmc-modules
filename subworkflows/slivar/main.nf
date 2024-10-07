@@ -41,6 +41,8 @@ workflow SLIVAR_ANALYSIS {
   VEP_VCF_TO_TSV_SLIVAR_TIER2(ANNOTATE_VEP_SLIVAR_TIER2.out[0], vcf_to_tsv_script, mane_transcript)
   ch_versions = ch_versions.mix(VEP_VCF_TO_TSV_SLIVAR_TIER2.out.versions)
 
+  VEP_VCF_TO_TSV_SLIVAR_TIER2.out[0].view()
+
   emit:
   slivar_trio_analysis_output_raw_vcf    = RUN_SLIVAR_TRIO_ANALYSIS.out[0]
   annotated_slivar_output                = ANNOTATE_VEP_SLIVAR.out[0]
