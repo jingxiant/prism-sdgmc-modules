@@ -2,7 +2,7 @@ include { GET_TOOLS_VERSION } from "../../modules/file_check/get_tools_version"
 include { LOG_PARAMS } from "../../modules/log_params"
 include { CHECK_FILE_VALIDITY_WES_MULTISAMPLE } from "../../modules/file_check/check_file_validity_multisample"
 include { CHECK_FILE_VALIDITY_WES_SINGLESAMPLE } from "../../modules/file_check/check_file_validity_singlesample"
-
+include { CHECK_FILE_VALIDITY_WES } from "../../modules/file_check/check_file_validity_trio"
 
 workflow CHECK_FILE_VALIDITY {
 
@@ -48,7 +48,8 @@ workflow CHECK_FILE_VALIDITY {
       )
     check_file_validity_wes_output = CHECK_FILE_VALIDITY_WES_MULTISAMPLE.out[0]
     }
-  
+
+
   emit:
   version_txt                                  = GET_TOOLS_VERSION.out[0]
   params_log                                   = LOG_PARAMS.out
