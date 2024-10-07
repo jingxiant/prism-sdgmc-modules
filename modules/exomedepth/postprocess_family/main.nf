@@ -15,7 +15,7 @@ process EXOMEDEPTH_POSTPROCESS_FAMILY {
         output:
         path("*.tsv"), optional: true
     
-      """
-      python3 ${process_script_family} ${panel} ${clingen} ${mutation_spectrum} ${decipher} ${exomedepth} ${vep} ${pedfile} ${samplename}.exomedepth.postprocess.tsv
-      """
+        """
+        python3 ${process_script_family} ${panel} ${clingen} ${mutation_spectrum} ${decipher} ${exomedepth} ${vep} ${pedfile} ${samplename}.exomedepth.postprocess.tsv
+        """
 }
