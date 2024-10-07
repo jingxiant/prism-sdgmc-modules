@@ -16,7 +16,7 @@ workflow SOMALIER {
   
   main:
   SOMALIER_EXTRACT(ch_apply_bqsr_bam, ref_genome, ref_genome_index, somalier_sites, proband_id)
-  SOMALIER_ANCESTRY(SOMALIER_EXTRACT.out[0].collect(), pedfile, proband_id)
+  SOMALIER_ANCESTRY(SOMALIER_EXTRACT.out[0].collect(), somalier_onekg_files, somalier_prism_files, proband_id)
   SOMALIER_RELATE(SOMALIER_EXTRACT.out[0].collect(), pedfile, proband_id)
 
   ch_versions = Channel.empty()
