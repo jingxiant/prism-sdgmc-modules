@@ -55,7 +55,7 @@ workflow GATK_BEST_PRACTICES {
   bqsr_bam                 = APPLY_BQSR.out[0]
   gvcf_file                = HAPLOTYPECALLER.out[1]
   gvcf_index               = HAPLOTYPECALLER.out[2]
-  raw_vcf                  = GENOTYPEGVCFS_WES_SINGLE_OR_COHORT.out[0]
+  //raw_vcf                  = GENOTYPEGVCFS_WES_SINGLE_OR_COHORT.out[0]
   raw_vcf                  = params.genotyping_mode == 'family' ? GENOTYPEGVCFS.out[0] : GENOTYPEGVCFS_WES_SINGLE_OR_COHORT.out[0]
   
   versions                 = ch_versions
