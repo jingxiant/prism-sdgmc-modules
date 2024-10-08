@@ -38,7 +38,7 @@ workflow CHECK_FILE_VALIDITY {
           check_sample_stats_script
         )
         check_file_validity_wes_output = CHECK_FILE_VALIDITY_WES_SINGLESAMPLE.out[0]
-    } else {
+      } else {
         // Optional: Log or handle full panel specific logic
         println "Running for single sample with full panel"
         CHECK_FILE_VALIDITY_WES_SINGLESAMPLE(
@@ -48,6 +48,7 @@ workflow CHECK_FILE_VALIDITY {
           check_sample_stats_script
         )
         check_file_validity_wes_output = CHECK_FILE_VALIDITY_WES_SINGLESAMPLE.out[0]
+      }
     }
       
 
