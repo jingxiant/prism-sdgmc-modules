@@ -46,8 +46,6 @@ workflow CHECK_FILE_VALIDITY {
         )
         check_file_validity_wes_output = CHECK_FILE_VALIDITY_WES_SINGLESAMPLE.out[0]
       }
-    }
-      
 
   if(params.genotyping_mode == 'joint'){
     CHECK_FILE_VALIDITY_WES_MULTISAMPLE(
