@@ -27,9 +27,7 @@ workflow CHECK_FILE_VALIDITY {
 
   LOG_PARAMS(parameters_file)
 
-  if(params.genotyping_mode == 'single'){
-       if(params.small_panel == 'true'){
-        // Optional: Log or handle small panel specific logic
+  if(params.genotyping_mode == 'single' && params.small_panel == 'true'){
         println "Running for single sample with small panel"
         CHECK_FILE_VALIDITY_WES_SINGLESAMPLE(
           ch_for_filecheck, 
@@ -39,7 +37,6 @@ workflow CHECK_FILE_VALIDITY {
         )
         check_file_validity_wes_output = CHECK_FILE_VALIDITY_WES_SINGLESAMPLE.out[0]
       } else {
-        // Optional: Log or handle full panel specific logic
         println "Running for single sample with full panel"
         CHECK_FILE_VALIDITY_WES_SINGLESAMPLE(
           ch_for_filecheck, 
