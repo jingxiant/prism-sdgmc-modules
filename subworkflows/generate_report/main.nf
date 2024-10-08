@@ -1,5 +1,6 @@
 include { GENERATE_REPORT_RMARKDOWN_SINGLESAMPLE } from "../../modules/rmarkdown_generate_report/single_sample"
 include { GENERATE_REPORT_RMARKDOWN_MULTISAMPLE } from "../../modules/rmarkdown_generate_report/multiple_samples"
+include { GENERATE_REPORT_RMARKDOWN } from "../../modules/rmarkdown_generate_report/family"
 
 workflow GENERATE_REPORT {
 
@@ -33,6 +34,18 @@ workflow GENERATE_REPORT {
       panel
       )
     sample_report = GENERATE_REPORT_RMARKDOWN_MULTISAMPLE.out[0]
+  }
+
+  if(params.genotyping_mode == 'family'){
+    GENERATE_REPORT_RMARKDOWN(
+      rmd_template, 
+      versions_log,
+      ch_check_file_output, 
+      ch_depth_of_coverage, 
+      resources_log, 
+      panel
+      )
+    sample_report = GENERATE_REPORT_RMARKDOWN.out[0]
   }
 
   emit:
