@@ -31,18 +31,25 @@ workflow CHECK_FILE_VALIDITY {
     if (params.small_panel == 'true') {
         // Optional: Log or handle small panel specific logic
         println "Running for single sample with small panel"
+        CHECK_FILE_VALIDITY_WES_SINGLESAMPLE(
+          ch_for_filecheck, 
+          check_file_status_script,
+          tabulate_samples_quality_script, 
+          check_sample_stats_script
+        )
+        check_file_validity_wes_output = CHECK_FILE_VALIDITY_WES_SINGLESAMPLE.out[0]
     } else {
         // Optional: Log or handle full panel specific logic
         println "Running for single sample with full panel"
-    }
-      CHECK_FILE_VALIDITY_WES_SINGLESAMPLE(
-        ch_for_filecheck, 
-        check_file_status_script,
-        tabulate_samples_quality_script, 
-        check_sample_stats_script
+        CHECK_FILE_VALIDITY_WES_SINGLESAMPLE(
+          ch_for_filecheck, 
+          check_file_status_script,
+          tabulate_samples_quality_script, 
+          check_sample_stats_script
         )
-      check_file_validity_wes_output = CHECK_FILE_VALIDITY_WES_SINGLESAMPLE.out[0]
-  }
+        check_file_validity_wes_output = CHECK_FILE_VALIDITY_WES_SINGLESAMPLE.out[0]
+    }
+      
 
   if(params.genotyping_mode == 'joint'){
     CHECK_FILE_VALIDITY_WES_MULTISAMPLE(
