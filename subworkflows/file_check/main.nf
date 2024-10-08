@@ -36,7 +36,9 @@ workflow CHECK_FILE_VALIDITY {
           check_sample_stats_script
         )
         check_file_validity_wes_output = CHECK_FILE_VALIDITY_WES_SINGLESAMPLE.out[0]
-      } else {
+      } 
+
+    if(params.genotyping_mode == 'single' && params.small_panel == 'false'){
         println "Running for single sample with full panel"
         CHECK_FILE_VALIDITY_WES_SINGLESAMPLE(
           ch_for_filecheck, 
