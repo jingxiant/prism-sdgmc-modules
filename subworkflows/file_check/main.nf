@@ -17,8 +17,10 @@ workflow CHECK_FILE_VALIDITY {
   ch_depth_of_coverage_stats 
   ch_vcf_filtered_tsv
   ch_decom_norm_vcf
-  //ch_verifybamid_wes
+  ch_verifybamid_wes
   ch_edit_qualimap
+  ch_slivar_tsv
+  ch_somalier_relate
   
   main:
   GET_TOOLS_VERSION(ch_versions_log, modify_versions_log_script)
