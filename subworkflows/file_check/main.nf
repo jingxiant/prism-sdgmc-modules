@@ -29,9 +29,9 @@ workflow CHECK_FILE_VALIDITY {
 
 
   if(params.genotyping_mode == 'single'){
-    if (params.small_panel == 'false'){
+    if (params.small_panel == true){
       println "Processing single sample with small_panel = true"
-    } else if (params.small_panel == 'false') {
+    } else if (params.small_panel == false) {
       println "Processing single sample with small_panel = false"
     }
     CHECK_FILE_VALIDITY_WES_SINGLESAMPLE(
