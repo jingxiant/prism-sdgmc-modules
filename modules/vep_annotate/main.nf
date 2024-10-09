@@ -29,7 +29,7 @@ process ANNOTATE_VEP {
         bgzip -f ${samplename}.${params.timestamp}.vep.vcf; tabix -p vcf ${samplename}.${params.timestamp}.vep.vcf.gz
 
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\tensemblvep:\$( echo \$(vep --help 2>&1) | sed 's/^.*Versions:.*ensembl-vep : //;s/ .*\$//')
+                \$(echo "${task.process}" | sed 's/.*://')\tensemblvep:\$( echo \$(vep --help 2>&1) | sed 's/^.*Versions:.*ensembl-vep : //;s/ .*\$//')
         END_VERSIONS
         """
 }
