@@ -1,4 +1,4 @@
-process BASE_RECALIBRATOR {
+process BASE_RECALIBRATOR_WES {
 
         container 'jxprismdocker/prism_bwa_gatk'
         publishDir "$params.publishdir/$samplename", mode: 'copy', exclude: '*.yml'
