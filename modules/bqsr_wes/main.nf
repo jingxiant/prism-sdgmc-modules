@@ -22,7 +22,7 @@ process BASE_RECALIBRATOR {
         gatk BaseRecalibrator -R $params.ref -I $sortedbam --known-sites $known_snps_dbsnp --known-sites $known_indels -L $target_bed -O ${sortedbam.simpleName}.${params.timestamp}.recal_data.table
         
         cat <<-END_VERSIONS > versions.yml
-        ${task.process}\tgatk:\$(echo \$(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*\$//')
+        \$(echo "${task.process}" | sed 's/.*://')\tgatk:\$(echo \$(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*\$//')
         END_VERSIONS
         """
 }
