@@ -19,7 +19,7 @@ process SOMALIER_RELATE {
         somalier relate ./*.somalier --ped ${pedfile} -o somalier.${params.timestamp}
 
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\tsomalier:\$(somalier 2>&1 | sed -n '1p' | sed 's/somalier version: //g')
+                \$(echo "${task.process}" | sed 's/.*://')\tsomalier:\$(somalier 2>&1 | sed -n '1p' | sed 's/somalier version: //g')
         END_VERSIONS
         """
 }
