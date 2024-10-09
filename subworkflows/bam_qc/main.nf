@@ -17,7 +17,11 @@ workflow BAM_QC {
   ch_versions = Channel.empty()
 
   RUN_QUALIMAP_WES(ch_apply_bqsr, targeted_bed_covered)
+  ch_versions = ch_versions.mix(RUN_QUALIMAP_WES.out.versions)
+
   DEPTH_OF_COVERAGE_WES(ch_apply_bqsr, ref_genome, ref_genome_index, refgene_track, targeted_bed_covered)
+  ch_versions = ch_versions.mix(DEPTH_OF_COVERAGE_WES.out.versions)
+
   EDIT_QUALIMAP_OUTPUT(RUN_QUALIMAP_WES.out[0])
 
   VERIFYBAMID_WES(ch_apply_bqsr, ref_genome, ref_genome_index, verifybamid_resources)
