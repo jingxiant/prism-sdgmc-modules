@@ -17,7 +17,7 @@ process RUN_QUALIMAP_WES{
         qualimap bamqc -gff $target_bed -bam $recalbam --java-mem-size=40G -nt 20
 
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\tqualimap bamqc:\$( echo \$(qualimap bamqc 2>&1) | sed 's/.*QualiMap v/v/' | sed 's/ Built.*//g')
+                \$(echo "${task.process}" | sed 's/.*://')\tqualimap bamqc:\$( echo \$(qualimap bamqc 2>&1) | sed 's/.*QualiMap v/v/' | sed 's/ Built.*//g')
         END_VERSIONS
         """
 }
