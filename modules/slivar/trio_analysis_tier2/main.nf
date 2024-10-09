@@ -32,7 +32,7 @@ process RUN_SLIVAR_TRIO_ANALYSIS_TIER2{
         slivar expr --vcf ${samplename}.${params.timestamp}.bcsq.vcf.gz --ped $pedfile --family-expr 'recessive:fam.every(segregating_recessive)' --family-expr 'x_recessive:(variant.CHROM == "X" || variant.CHROM == "chrX") && fam.every(segregating_recessive_x)' --js ${slivar_jspath} --pass-only --info 'INFO.gnomad_popmax_af < 0.05' -g ${slivar_gnomadpath} | bgzip -c > ${samplename}.${params.timestamp}.slivar.recessive.tier2.vcf.gz
 
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\tbcftools:\$(bcftools --version 2>&1 | sed -n '1p' | sed 's/bcftools //g; s/ .*//'); slivar:\$(slivar 2>&1 | sed -n '1p' |sed 's/^> slivar version: //g; s/ .*//g')
+                \$(echo "${task.process}" | sed 's/.*://')\tbcftools:\$(bcftools --version 2>&1 | sed -n '1p' | sed 's/bcftools //g; s/ .*//'); slivar:\$(slivar 2>&1 | sed -n '1p' |sed 's/^> slivar version: //g; s/ .*//g')
         END_VERSIONS
         """
 }
