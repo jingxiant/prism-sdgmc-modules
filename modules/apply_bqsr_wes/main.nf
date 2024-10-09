@@ -17,7 +17,7 @@ process APPLY_BQSR {
         gatk ApplyBQSR -R $params.ref -I $sortedbam --bqsr-recal-file ${recal_table} -O ${sortedbam.simpleName}.${params.timestamp}.BQSR.bam
         
         cat <<-END_VERSIONS > versions.yml
-        ${task.process}\tgatk:\$(echo \$(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*\$//')
+        \$(echo "${task.process}" | sed 's/.*://')\tgatk:\$(echo \$(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*\$//')
         END_VERSIONS
         """
 }
