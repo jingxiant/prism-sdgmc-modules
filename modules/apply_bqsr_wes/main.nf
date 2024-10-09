@@ -1,4 +1,4 @@
-process APPLY_BQSR {
+process APPLY_BQSR_WES {
 
         container 'jxprismdocker/prism_bwa_gatk'
         publishDir "$params.publishdir/$samplename", mode: 'copy', exclude: '*.yml'
