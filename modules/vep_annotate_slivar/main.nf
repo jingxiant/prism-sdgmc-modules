@@ -30,7 +30,7 @@ process ANNOTATE_VEP_SLIVAR{
         bgzip -f ${slivarvcf.baseName}.vep.vcf; tabix -p vcf ${slivarvcf.baseName}.vep.vcf.gz
         
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\tensemblvep:\$( echo \$(vep --help 2>&1) | sed 's/^.*Versions:.*ensembl-vep : //;s/ .*\$//')
+                \$(echo "${task.process}" | sed 's/.*://')\tensemblvep:\$( echo \$(vep --help 2>&1) | sed 's/^.*Versions:.*ensembl-vep : //;s/ .*\$//')
         END_VERSIONS
         """
 }
