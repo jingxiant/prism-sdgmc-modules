@@ -19,7 +19,7 @@ process VERIFYBAMID_WES {
         VerifyBamID --Reference ${params.ref} --BamFile ${bam} --SVDPrefix exome/1000g.phase3.10k.b38.exome.vcf.gz.dat --Output ${samplename}.${params.timestamp}
 
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\tVerifyBamID:\$(echo \$(VerifyBamID 2>&1) | sed 's/^.*Version://g; s/ Copyright.*//g')
+                \$(echo "${task.process}" | sed 's/.*://')\tVerifyBamID:\$(echo \$(VerifyBamID 2>&1) | sed 's/^.*Version://g; s/ Copyright.*//g')
         END_VERSIONS
         """
 }
