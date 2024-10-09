@@ -21,7 +21,7 @@ process VEP_VCF_TO_TSV {
         bgzip -f ${samplename}.${params.timestamp}.vep.tsv
 
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\tpython:\$(python --version 2>&1 | sed 's/Python //g' ); vcf to tsv script: ${vcf_to_tsv}
+                \$(echo "${task.process}" | sed 's/.*://')\tpython:\$(python --version 2>&1 | sed 's/Python //g' ); vcf to tsv script: ${vcf_to_tsv}
         END_VERSIONS
         """
 }
