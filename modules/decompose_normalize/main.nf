@@ -20,7 +20,7 @@ process DECOMPOSE_AND_NORMALIZE {
         tabix ${samplename}.${params.timestamp}.decomposed.normalized.vcf.gz
         
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\tvt:\$(echo \$(vt --version 2>&1) | sed 's/vt //; s/The.*//')
+                \$(echo "${task.process}" | sed 's/.*://')\tvt:\$(echo \$(vt --version 2>&1) | sed 's/vt //; s/The.*//')
         END_VERSIONS
         """
 }
