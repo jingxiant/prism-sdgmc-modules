@@ -1,4 +1,4 @@
-process HAPLOTYPECALLER{
+process HAPLOTYPECALLER_WES{
 
         container 'jxprismdocker/prism_bwa_gatk'
         publishDir "$params.publishdir/$samplename", mode: 'copy', exclude: '*.yml'
