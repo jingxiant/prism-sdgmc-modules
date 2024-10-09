@@ -19,7 +19,7 @@ process TSV_TO_XLSX_TRIO {
         python3 -W ignore ${tsv_to_xlsx} $rarecoding_tsv ${samplename}_${params.timestamp}_Variants.xlsx ${col_file} --slivar_denovo_tsv ${samplename}.${params.timestamp}.slivar.denovo.vcf.vep.tsv --slivar_comphet_tsv ${samplename}.${params.timestamp}.slivar.comphet.vcf.vep.tsv --slivar_recessive_tsv ${samplename}.${params.timestamp}.slivar.recessive.vcf.vep.tsv
 
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\tpython:\$(python --version 2>&1 | sed 's/Python //g' ); tsv to xlsv script:${tsv_to_xlsx}
+                \$(echo "${task.process}" | sed 's/.*://')\tpython:\$(python --version 2>&1 | sed 's/Python //g' ); tsv to xlsv script:${tsv_to_xlsx}
         END_VERSIONS
         """
 }
