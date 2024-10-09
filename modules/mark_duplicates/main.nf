@@ -14,7 +14,7 @@ process MARK_DUPLICATES{
         gatk MarkDuplicates -I $bamfile -O ${bamfile.simpleName}.${params.timestamp}.sorted.rmdup.bam --CREATE_INDEX true --METRICS_FILE ${bamfile.simpleName}.${params.timestamp}.marked_dup_metrics.txt
        
         cat <<-END_VERSIONS > versions.yml
-        ${task.process}\tgatk:\$(echo \$(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*\$//')
+        \$(echo "${task.process}" | sed 's/.*://')\tgatk:\$(echo \$(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*\$//')
         END_VERSIONS
         """
 }
