@@ -19,7 +19,7 @@ process TSV_TO_XLSX_MULTISAMPLE {
         python3 -W ignore ${tsv_to_xlsx} $rarecoding_tsv ${samplename}_Variants.xlsx ${col_file}
 
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\ttsv to xlsv script:${tsv_to_xlsx}
+                \$(echo "${task.process}" | sed 's/.*://')\ttsv to xlsv script:${tsv_to_xlsx}
         END_VERSIONS
         """
 }
