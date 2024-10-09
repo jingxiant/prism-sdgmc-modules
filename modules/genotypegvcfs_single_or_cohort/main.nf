@@ -24,7 +24,7 @@ process GENOTYPEGVCFS_WES_SINGLE_OR_COHORT {
                 gatk GenotypeGVCFs -R $params.ref -V ${samplename}.${params.timestamp}.combinedgvcf.vcf.gz  -O ${samplename}.${params.timestamp}.raw.vcf.gz -L $target_bed
                 
                 cat <<-END_VERSIONS > versions.yml
-                        ${task.process}\tgatk:\$(echo \$(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*\$//')
+                        \$(echo "${task.process}" | sed 's/.*://')\tgatk:\$(echo \$(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*\$//')
         """
         }
         else if(params.genotyping_mode == 'single'){
@@ -32,7 +32,7 @@ process GENOTYPEGVCFS_WES_SINGLE_OR_COHORT {
                 gatk GenotypeGVCFs -R $params.ref -V ${gvcf} -O ${samplename}.${params.timestamp}.raw.vcf.gz -L $target_bed
                 
                 cat <<-END_VERSIONS > versions.yml
-                        ${task.process}\tgatk:\$(echo \$(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*\$//')
+                        \$(echo "${task.process}" | sed 's/.*://')\tgatk:\$(echo \$(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*\$//')
         """
         }
 }
