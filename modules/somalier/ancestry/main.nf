@@ -21,7 +21,7 @@ process SOMALIER_ANCESTRY {
         somalier ancestry --labels prism-somalier/ancestry-labels-prism.tsv prism-somalier/*.somalier ++ ./*.somalier -o somalier.prism.${params.timestamp}
 
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\tsomalier:\$(somalier 2>&1 | sed -n '1p' | sed 's/somalier version: //g')
+                \$(echo "${task.process}" | sed 's/.*://')\tsomalier:\$(somalier 2>&1 | sed -n '1p' | sed 's/somalier version: //g')
         END_VERSIONS
         """
 }
