@@ -20,7 +20,7 @@ process SOMALIER_EXTRACT {
         somalier extract -d ./ --sites ${somalier_sites} -f ${params.ref} ${bam}
 
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\tsomalier:\$(somalier 2>&1 | sed -n '1p' | sed 's/somalier version: //g')
+                \$(echo "${task.process}" | sed 's/.*://')\tsomalier:\$(somalier 2>&1 | sed -n '1p' | sed 's/somalier version: //g')
         END_VERSIONS
         """
 }
