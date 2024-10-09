@@ -20,7 +20,7 @@ process HARDFILTER_VARIANTS {
         gatk VariantFiltration -R $params.ref -V "${samplename}.raw.indel" --filter-expression "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0" --filter-name "indel_hardfilter" -O "${samplename}.${params.timestamp}.filtered_indel.vcf.gz"
         
         cat <<-END_VERSIONS > versions.yml
-                ${task.process}\tgatk:\$(echo \$(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*\$//')
+                \$(echo "${task.process}" | sed 's/.*://')\tgatk:\$(echo \$(gatk --version 2>&1) | sed 's/^.*(GATK) v//; s/ .*\$//')
         END_VERSIONS
         """
 }
